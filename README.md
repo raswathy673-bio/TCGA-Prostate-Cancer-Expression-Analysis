@@ -1,2 +1,242 @@
-# TCGA-Prostate-Cancer-Expression-Analysis
-Comprehensive TCGA-PRAD expression analysis of KLK2, KLK3, TMPRSS2 and AKR1C3 using R and TCGAbiolinks .
+# TCGA Prostate Cancer (TCGA-PRAD) Gene Expression Analysis
+
+## Project Overview
+
+This repository contains a comprehensive R-based bioinformatics workflow for analyzing gene expression in prostate adenocarcinoma (TCGA-PRAD) using publicly available RNA-sequencing data from The Cancer Genome Atlas (TCGA). The workflow demonstrates data retrieval, preprocessing, clinical association analyses, visualization, and correlation analysis for selected genes of interest.
+
+---
+
+## Objectives
+
+* Download and preprocess TCGA-PRAD RNA-seq data.
+* Extract expression profiles of selected target genes.
+* Compare gene expression between tumor and normal prostate tissues.
+* Investigate associations between gene expression and clinicopathological variables.
+* Generate publication-quality figures.
+* Evaluate co-expression relationships among target genes.
+
+---
+
+## Dataset
+
+**Source:** The Cancer Genome Atlas (TCGA)
+
+**Cancer Type:** Prostate Adenocarcinoma (TCGA-PRAD)
+
+**Data Type:**
+
+* RNA-Seq Gene Expression Quantification (HTSeq)
+* Clinical Information
+
+**Platform:**
+
+* Genomic Data Commons (GDC)
+
+---
+
+## Target Genes
+
+* KLK2
+* KLK3
+* TMPRSS2
+* AKR1C3
+
+---
+
+## Software
+
+* R (version 4.x)
+* RStudio
+
+### R Packages
+
+* TCGAbiolinks
+* SummarizedExperiment
+* dplyr
+* tidyr
+* tibble
+* ggplot2
+* ggpubr
+* pheatmap
+* corrplot
+* RColorBrewer
+* reshape2
+
+---
+
+# Project Structure
+
+```text
+TCGA-Prostate-Cancer-Expression-Analysis/
+
+│── README.md
+│── LICENSE
+│── .gitignore
+
+├── scripts/
+│   ├── 01_download_TCGA.R
+│   ├── 02_data_processing.R
+│   ├── 03_tumor_vs_normal.R
+│   ├── 04_gleason_analysis.R
+│   ├── 05_T_stage_analysis.R
+│   ├── 06_N_stage_analysis.R
+│   ├── 07_PSA_analysis.R
+│   ├── 08_ERG_analysis.R
+│   ├── 09_heatmap.R
+│   └── 10_correlation_analysis.R
+
+├── figures/
+
+├── results/
+
+└── data/
+```
+
+---
+
+# Workflow
+
+## Step 1: Download TCGA-PRAD Dataset
+
+* Retrieve RNA-seq data using TCGAbiolinks.
+* Download associated clinical information.
+* Create a SummarizedExperiment object.
+
+---
+
+## Step 2: Data Processing
+
+* Extract TPM expression matrix.
+* Annotate Ensembl IDs with HGNC gene symbols.
+* Select target genes.
+* Apply log2(TPM + 1) transformation.
+
+---
+
+## Step 3: Tumor vs Normal Expression Analysis
+
+Compare expression between tumor and normal tissues using the Wilcoxon rank-sum test.
+
+Visualization:
+
+* Boxplots
+* Violin plots
+
+---
+
+## Step 4: Clinical Association Analysis
+
+Expression was compared according to:
+
+* Gleason Score
+* Pathological T Stage
+* Pathological N Stage
+* Pre-operative PSA
+* TMPRSS2–ERG Fusion Status
+
+Statistical Methods:
+
+* Wilcoxon rank-sum test
+* Kruskal–Wallis test
+
+---
+
+## Step 5: Heatmap
+
+Generate a heatmap to visualize expression patterns of all target genes across samples.
+
+---
+
+## Step 6: Correlation Analysis
+
+Perform Pearson correlation analysis among the selected genes.
+
+Generate:
+
+* Correlation matrix
+* Correlation heatmap
+
+---
+
+# Example Figures
+
+The workflow generates publication-quality figures including:
+
+* Tumor vs Normal expression plots
+* Gleason Score violin plots
+* Pathological T Stage violin plots
+* Pathological N Stage violin plots
+* PSA group violin plots
+* TMPRSS2–ERG status violin plots
+* Heatmap
+* Correlation matrix
+
+---
+
+# Statistical Analysis
+
+| Analysis         | Statistical Test       |
+| ---------------- | ---------------------- |
+| Tumor vs Normal  | Wilcoxon Rank-Sum Test |
+| Gleason Score    | Kruskal–Wallis Test    |
+| T Stage          | Kruskal–Wallis Test    |
+| N Stage          | Wilcoxon Rank-Sum Test |
+| PSA Groups       | Kruskal–Wallis Test    |
+| ERG Status       | Wilcoxon Rank-Sum Test |
+| Gene Correlation | Pearson Correlation    |
+
+---
+
+# How to Reproduce the Analysis
+
+1. Install all required R packages.
+2. Clone this repository.
+
+3. Open the project in RStudio.
+
+4. Run the scripts in the following order:
+
+```
+01_download_TCGA.R
+02_data_processing.R
+03_tumor_vs_normal.R
+04_gleason_analysis.R
+05_T_stage_analysis.R
+06_N_stage_analysis.R
+07_PSA_analysis.R
+08_ERG_analysis.R
+09_heatmap.R
+10_correlation_analysis.R
+```
+
+5. Output figures and statistical results will be generated in the `figures/` and `results/` directories.
+
+---
+
+# Applications
+
+This workflow can be adapted for:
+
+* Biomarker discovery
+* Cancer transcriptomics
+* Clinical association studies
+* Target validation
+* Precision oncology research
+* Bioinformatics training
+* Reproducible genomic data analysis
+
+---
+
+# Citation
+
+If you use TCGA data in your research, please cite:
+
+The Cancer Genome Atlas (TCGA) Research Network and the Genomic Data Commons (GDC).
+
+---
+
+# License
+
+This repository is released under the MIT License.
+
+---

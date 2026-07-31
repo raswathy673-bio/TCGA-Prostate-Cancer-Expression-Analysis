@@ -93,10 +93,19 @@ print(dim(filtered_log2))
 # 11. Save processed data
 #--------------------------------------------------------------
 
+#--------------------------------------------------------------
+# 11. Save processed data
+#--------------------------------------------------------------
+
+clinical_data <- as.data.frame(colData(data_se))
+
 save(
   filtered_log2,
   gene_info,
+  clinical_data,
+  data_se,
   file = "results/Processed_Expression_Data.RData"
 )
 
+cat("\nPreprocessing completed successfully.\n")
 cat("\nPreprocessing completed successfully.\n")
